@@ -1,3 +1,4 @@
+import datetime 
 class Medicamento:
     def __init__(self):
         self.__nombre = "" 
@@ -13,6 +14,7 @@ class Medicamento:
     def asignarDosis(self,med):
         self.__dosis = med 
         
+        
 class Mascota:
     
     def __init__(self):
@@ -20,8 +22,8 @@ class Mascota:
         self.__historia=0
         self.__tipo=" "
         self.__peso=" "
-        self.__fecha_ingreso=" "
-        self.__lista_medicamentos=[]
+        self.__fecha_ingreso=datetime.datetime(0,0,0)
+        self.__lista_medicamentos=()
         
     def verNombre(self):
         return self.__nombre
@@ -44,14 +46,14 @@ class Mascota:
         self.__tipo=t
     def asignarPeso(self,p):
         self.__peso=p
-    def asignarFecha(self,f):
-        self.__fecha_ingreso=f
+    def asignarFecha(self,año,mes,dia):
+        self.__fecha_ingreso= datetime.datetime(año,mes,dia)
     def asignarLista_Medicamentos(self,n):
         self.__lista_medicamentos = n 
     
 class sistemaV:
     def __init__(self):
-        self.__lista_mascotas = []
+        self.__lista_mascotas = ()
     
     def verificarExiste(self,historia):
         for m in self.__lista_mascotas:
@@ -59,6 +61,13 @@ class sistemaV:
                 return True
         #solo luego de haber recorrido todo el ciclo se retorna False
         return False
+    def verificarmed(self,nombre):
+        for a in self.__lista_mascotas:
+            if nombre == a.verNombre():
+                return True
+        return False
+
+
         
     def verNumeroMascotas(self):
         return len(self.__lista_mascotas) 
@@ -107,10 +116,13 @@ def main():
             historia=int(input("Ingrese la historia clínica de la mascota: "))
             #   verificacion=servicio_hospitalario.verDatosPaciente(historia)
             if servicio_hospitalario.verificarExiste(historia) == False:
+
                 nombre=input("Ingrese el nombre de la mascota: ")
                 tipo=input("Ingrese el tipo de mascota (felino o canino): ")
                 peso=int(input("Ingrese el peso de la mascota: "))
-                fecha=input("Ingrese la fecha de ingreso (dia/mes/año): ")
+                año=int(input("Ingrese la año de ingreso"))
+                mes=int(input("Ingrese la año de ingreso"))
+                dia=int(input("Ingrese la año de ingreso"))
                 nm=int(input("Ingrese cantidad de medicamentos: "))
                 lista_med=[]
 
@@ -127,7 +139,7 @@ def main():
                 mas.asignarHistoria(historia)
                 mas.asignarPeso(peso)
                 mas.asignarTipo(tipo)
-                mas.asignarFecha(fecha)
+                mas.asignarFecha(año,mes,dia)
                 mas.asignarLista_Medicamentos(lista_med)
                 servicio_hospitalario.ingresarMascota(mas)
 
