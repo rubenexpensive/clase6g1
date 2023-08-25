@@ -36,7 +36,7 @@ class Mascota:
     def verFecha(self):
         return self.__fecha_ingreso
     def verLista_Medicamentos(self):
-        return self.__lista_medicamentos 
+        return self.__lista_medicamentos
             
     def asignarNombre(self,n):
         self.__nombre=n
@@ -60,15 +60,21 @@ class sistemaV:
             if historia == m.verHistoria():
                 for q in m.verLista_Medicamentos:
                     if q.verNombre() in self.__lista_medicamentos:
-                        return False
-        return True
+                        continue
+        return False
         #solo luego de haber recorrido todo el ciclo se retorna False
-        return False
-    def verificarmed(self,nombre):
-        for a in self.__lista_mascotas:
-            if nombre == a.verNombre():
-                return True
-        return False
+    # def verificarmed(self,nombre):
+    #     for a in self.__lista_mascotas:
+    #         if nombre == a.verNombre():
+    #             return True
+    #     return False
+    def diccionario_tipo(self,mascota):
+        self.__lista_mascotas.append(mascota) 
+        if mascota.verTipo() == "canino":
+            self.__lista_caninos = dict(historia=mascota.verHistoria(), mascota=mascota)
+        elif mascota.verTipo() == "felino":
+            self.__lista_felinos = dict(historia=mascota.verHistoria(), mascota=mascota)
+
 
 
         
