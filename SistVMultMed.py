@@ -58,7 +58,10 @@ class sistemaV:
     def verificarExiste(self,historia):
         for m in self.__lista_mascotas:
             if historia == m.verHistoria():
-                return True
+                for q in m.verLista_Medicamentos:
+                    if q.verNombre() in self.__lista_medicamentos:
+                        return False
+        return True
         #solo luego de haber recorrido todo el ciclo se retorna False
         return False
     def verificarmed(self,nombre):
